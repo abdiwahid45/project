@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>WhatsApp Order Form</title>
+</head>
+<body>
+    <!-- Order Form Section -->
+    <div>
+        <h2>Complete Your Order</h2>
+        <form id="orderForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="number">Phone Number:</label>
+            <input type="text" id="number" name="number" required><br><br>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea><br><br>
+
+            <label for="product">Select Product:</label>
+            <select id="product" name="product" required>
+                <option value="shirt">Shirt</option>
+                <option value="trouser">Trouser</option>
+                <option value="shoes">Shoes</option>
+                <option value="other">Other Clothes</option>
+            </select><br><br>
+
+            <label for="size">Select Size:</label>
+            <select id="size" name="size" required>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="xlarge">X-Large</option>
+                <option value="xxlarge">XX-Large</option>
+            </select><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault(); 
+
+            // Get form values
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const number = document.getElementById('number').value;
+            const message = document.getElementById('message').value;
+            const product = document.getElementById('product').value;
+            const size = document.getElementById('size').value;
+
+            // Format WhatsApp message
+            const whatsappMessage = 
+                `Hello, I would like to place an order:%0A +
+                Name: ${name}%0A +
+                Email: ${email}%0A +
+                Phone: ${number}%0A +
+                Message: ${message}%0A +
+                Product: ${product}%0A +
+                Size: ${size}`;
+
+            const whatsappUrl = `https://wa.me/+252684827981?text=${whatsappMessage}`; // Replace 252684827981 with your WhatsApp number
+
+            // Redirect to WhatsApp
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
